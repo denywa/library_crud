@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+//import model User
 use App\Models\User;
-use Illuminate\Http\Request;
+
+//import return type View
 use Illuminate\View\View;
+
+//import return type RedirectResponse
 use Illuminate\Http\RedirectResponse;
+
+//import Http Request
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -45,18 +52,18 @@ class UserController extends Controller
         $request->validate([
             'name'     => 'required|min:3',
             'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:6'
         ]);
 
         //create user
         User::create([
             'name'     => $request->name,
             'email'    => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => bcrypt($request->password)
         ]);
 
         //redirect to index
-        return redirect()->route('users.index')->with(['success' => 'User Created Successfully!']);
+        return redirect()->route('users.index')->with(['success' => 'User Berhasil Disimpan!']);
     }
 
     /**
@@ -102,7 +109,7 @@ class UserController extends Controller
         $request->validate([
             'name'     => 'required|min:3',
             'email'    => 'required|email|unique:users,email,' . $id,
-            'password' => 'nullable|min:6',
+            'password' => 'nullable|min:6'
         ]);
 
         //get user by ID
@@ -112,11 +119,11 @@ class UserController extends Controller
         $user->update([
             'name'     => $request->name,
             'email'    => $request->email,
-            'password' => $request->password ? bcrypt($request->password) : $user->password,
+            'password' => $request->password ? bcrypt($request->password) : $user->password
         ]);
 
         //redirect to index
-        return redirect()->route('users.index')->with(['success' => 'User Updated Successfully!']);
+        return redirect()->route('users.index')->with(['success' => 'User Berhasil Diubah!']);
     }
 
     /**
@@ -134,6 +141,6 @@ class UserController extends Controller
         $user->delete();
 
         //redirect to index
-        return redirect()->route('users.index')->with(['success' => 'User Deleted Successfully!']);
+        return redirect()->route('users.index')->with(['success' => 'User Berhasil Dihapus!']);
     }
 }

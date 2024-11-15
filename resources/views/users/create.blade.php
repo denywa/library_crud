@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ action('UserController@store') }}" method="POST">
+                        <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data">
                         
                             @csrf
 
@@ -44,7 +44,7 @@
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">PASSWORD</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter Password">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter User Password">
                             
                                 <!-- error message for password -->
                                 @error('password')

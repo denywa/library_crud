@@ -11,18 +11,6 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                     <div class="mt-4">
-                        <a href="{{ route('books.index') }}" class="text-blue-500">Manage Books</a>
-                    </div>
-                    <div class="mt-4">
-                        <a href="{{ route('journals.index') }}" class="text-blue-500">Manage Journals</a>
-                    </div>
-                    <div class="mt-4">
-                        <a href="{{ route('newspapers.index') }}" class="text-blue-500">Manage Newspapers</a>
-                    </div>
-                    <div class="mt-4">
-                        <a href="{{ route('cds.index') }}" class="text-blue-500">Manage CDs</a>
-                    </div>
-                    <div class="mt-4">
                         <a href="{{ route('users.index') }}" class="text-blue-500">Manage Users</a>
                     </div>
                 </div>
