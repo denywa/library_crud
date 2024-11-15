@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Books</title>
+    <title>Data Journals</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background: lightgray">
@@ -13,12 +13,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <h3 class="text-center my-4">Daftar Buku</h3>
+                    <h3 class="text-center my-4">Daftar Jurnal</h3>
                     <hr>
                 </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <a href="{{ route('books.create') }}" class="btn btn-md btn-success mb-3">ADD BOOK</a>
+                        <a href="{{ route('journals.create') }}" class="btn btn-md btn-success mb-3">ADD JOURNAL</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -26,22 +26,20 @@
                                     <th scope="col">AUTHOR</th>
                                     <th scope="col">PUBLISHER</th>
                                     <th scope="col">PUBLICATION YEAR</th>
-                                    <th scope="col">TYPE</th>
                                     <th scope="col" style="width: 20%">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($books as $book)
+                                @forelse ($journals as $journal)
                                     <tr>
-                                        <td>{{ $book->title }}</td>
-                                        <td>{{ $book->author }}</td>
-                                        <td>{{ $book->publisher }}</td>
-                                        <td>{{ $book->publication_year }}</td>
-                                        <td>{{ $book->type }}</td>
+                                        <td>{{ $journal->title }}</td>
+                                        <td>{{ $journal->author }}</td>
+                                        <td>{{ $journal->publisher }}</td>
+                                        <td>{{ $journal->publication_year }}</td>
                                         <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('books.destroy', $book->id) }}" method="POST">
-                                                <a href="{{ route('books.show', $book->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                                <a href="{{ route('books.edit', $book->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('journals.destroy', $journal->id) }}" method="POST">
+                                                <a href="{{ route('journals.show', $journal->id) }}" class="btn btn-sm btn-dark">SHOW</a>
+                                                <a href="{{ route('journals.edit', $journal->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
@@ -50,12 +48,12 @@
                                     </tr>
                                 @empty
                                     <div class="alert alert-danger">
-                                        Data Books belum Tersedia.
+                                        Data Journals belum Tersedia.
                                     </div>
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $books->links() }}
+                        {{ $journals->links() }}
                     </div>
                 </div>
             </div>
