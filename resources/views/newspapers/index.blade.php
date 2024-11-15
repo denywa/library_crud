@@ -19,6 +19,7 @@
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <a href="{{ route('newspapers.create') }}" class="btn btn-md btn-success mb-3">ADD NEWSPAPER</a>
+                        <a href="{{ Auth::user()->usertype == 'admin' ? url('admin/dashboard') : url('librarian/dashboard') }}" class="btn btn-md btn-secondary mb-3">BACK TO DASHBOARD</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>

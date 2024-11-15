@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Journals</title>
+    <title>Data Users</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background: lightgray">
@@ -13,34 +13,32 @@
         <div class="row">
             <div class="col-md-12">
                 <div>
-                    <h3 class="text-center my-4">Daftar Jurnal</h3>
+                    <h3 class="text-center my-4">Daftar Pengguna</h3>
                     <hr>
                 </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <a href="{{ route('journals.create') }}" class="btn btn-md btn-success mb-3">ADD JOURNAL</a>
+                        <a href="{{ route('users.create') }}" class="btn btn-md btn-success mb-3">ADD USER</a>
                         <a href="{{ Auth::user()->usertype == 'admin' ? url('admin/dashboard') : url('librarian/dashboard') }}" class="btn btn-md btn-secondary mb-3">BACK TO DASHBOARD</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">TITLE</th>
-                                    <th scope="col">AUTHOR</th>
-                                    <th scope="col">PUBLISHER</th>
-                                    <th scope="col">PUBLICATION YEAR</th>
+                                    <th scope="col">NAME</th>
+                                    <th scope="col">EMAIL</th>
+                                    <th scope="col">USER TYPE</th>
                                     <th scope="col" style="width: 20%">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($journals as $journal)
+                                @forelse ($users as $user)
                                     <tr>
-                                        <td>{{ $journal->title }}</td>
-                                        <td>{{ $journal->author }}</td>
-                                        <td>{{ $journal->publisher }}</td>
-                                        <td>{{ $journal->publication_year }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->usertype }}</td>
                                         <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('journals.destroy', $journal->id) }}" method="POST">
-                                                <a href="{{ route('journals.show', $journal->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                                <a href="{{ route('journals.edit', $journal->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                                <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-dark">SHOW</a>
+                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
@@ -49,12 +47,12 @@
                                     </tr>
                                 @empty
                                     <div class="alert alert-danger">
-                                        Data Journals belum Tersedia.
+                                        Data Users belum Tersedia.
                                     </div>
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $journals->links() }}
+                        {{ $users->links() }}
                     </div>
                 </div>
             </div>
